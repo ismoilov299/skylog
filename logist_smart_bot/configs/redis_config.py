@@ -27,7 +27,7 @@ async def get_redis_client():
 
             await _redis_pool.ping()
         except Exception as e:
-            logger.error(f"Redis bilan ulanishda xatolik: {str(e)}")
+            logger.error(f"Error connecting to Redis: {str(e)}")
             raise
 
     return _redis_pool
@@ -39,4 +39,4 @@ async def close_redis_connection():
     if _redis_pool is not None:
         await _redis_pool.close()
         _redis_pool = None
-        logger.info("Redis ulanishi yopildi")
+        logger.info("Redis connection closed")

@@ -152,6 +152,7 @@ async def register_password_message(msg: Message) -> None:
 async def login_message(msg: Message) -> None:
     data = state.get_data(msg.chat.id)
     lang = data.get("LANG")
+    print(lang)
     s = state.State("LOGIN_PHONE", data, msg.chat.id)
     state.append(s)
     text = language.Language.get(lang, "SEND_YOUR_CONTACT")
@@ -890,26 +891,16 @@ async def have_2fa_NO(msg: Message) -> None:
     await client.disconnect()
     data.update({"HASH": res.phone_code_hash})
     lang = data.get("LANG")
-    s = state.State("ASK_LOGIN", data, msg.chat.id)
+    s = state.State("ENTER_ACTIVATE_CODE", data, msg.chat.id)
     state.append(s)
-    text = language.Language.get(lang, "ASK_LOGIN")
-    await bot.send_message(msg.chat.id, text, reply_markup=keyboard.get_question_menu(lang))
+    text = language.Language.get(lang, "ENTER_YOUR_CODE")
+    await bot.send_message(msg.chat.id, text, reply_markup=keyboard.remove_menu)
 
 
 @dp.message_handler(filters.CheckState("ENTER_ACTIVATE_PASSWORD"))
 async def enter_activate_password_message(msg: Message) -> None:
     data = state.get_data(msg.chat.id)
     data.update({"PASSWORD": msg.text})
-    lang = data.get("LANG")
-    s = state.State("ASK_LOGIN", data, msg.chat.id)
-    state.append(s)
-    text = language.Language.get(lang, "ASK_LOGIN")
-    await bot.send_message(msg.chat.id, text, reply_markup=keyboard.get_question_menu(lang))
-
-
-@dp.message_handler(filters.CheckState("ASK_LOGIN"), filters.CheckWord("YES"))
-async def ask_login_yes(msg: Message) -> None:
-    data = state.get_data(msg.chat.id)
     lang = data.get("LANG")
     phone = data.get("PHONE_NUMBER")
     client = await utils.get_client(phone)
@@ -935,18 +926,6 @@ async def ask_login_yes(msg: Message) -> None:
                 await client.disconnect()
         except:
             pass
-
-
-@dp.message_handler(filters.CheckState("ASK_LOGIN"), filters.CheckWord("NO"))
-async def ask_login_no(msg: Message) -> None:
-    data = state.get_data(msg.chat.id)
-    lang = data.get("LANG")
-    print('ishladi')
-    s = state.State("AUTH_MENU", {"LANG": lang}, msg.chat.id)
-    state.append(s)
-    text = language.Language.get(lang, "CHOOSE_ONE_FROM_THIS_SECTION")
-
-    await bot.send_message(msg.chat.id, text, reply_markup=keyboard.get_auth_menu(lang))
 
 
 @dp.message_handler(filters.CheckState("ENTER_ACTIVATE_CODE"))

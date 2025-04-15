@@ -236,7 +236,6 @@ async def start_redis_scheduler():
         else:
             logger.info("Redis-da hech qanday xabar yo'q")
 
-        # Global o'zgaruvchi orqali task saqlash
         global _scheduler_task
         if _scheduler_task is not None and not _scheduler_task.done():
             logger.info("Scheduler task allaqachon ishlayapti, yangi task yaratish shart emas")

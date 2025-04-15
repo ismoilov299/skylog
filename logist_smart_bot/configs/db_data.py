@@ -1,7 +1,6 @@
 from sqlalchemy import create_engine, text
 import datetime
 
-# Ma'lumotlar bazasi ulanishi
 engine = create_engine(
     url="postgresql+psycopg2://akbarov:akbarov@localhost:5433/logist_smart",
     echo=True,
@@ -9,9 +8,7 @@ engine = create_engine(
     max_overflow=250
 )
 
-# Yetishmayotgan o'zbek tilidagi tarjimalar
 missing_uzbek_translations = {
-    # Yuk turlari (rus tilidagi so'zlar saqlangan holda)
     "AWNING": {
         "Uzbek 🇺🇿": "ТЕНТ"
     },
