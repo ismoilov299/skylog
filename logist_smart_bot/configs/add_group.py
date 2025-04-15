@@ -9,7 +9,7 @@ from telethon.errors import SessionPasswordNeededError, PhoneCodeInvalidError
 from sqlalchemy import create_engine, Column, Integer, String, Boolean, DateTime
 from sqlalchemy.orm import DeclarativeBase, Session
 import datetime
-
+# postgresql+psycopg2://akbarov:akbarov@localhost:5433/logist_smart
 # Logging sozlamalari
 logging.basicConfig(
     level=logging.INFO,
