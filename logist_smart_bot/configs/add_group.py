@@ -30,12 +30,12 @@ API_HASH = '1bab3b9c3675227b43619d2175bd6990'
 PHONE = '+998906830271'
 
 # Sessiya fayli yo‘li
-SESSION_PATH = f"/Users/ismoilov299/Downloads/logist_smart/logist_smart_bot/{PHONE.lstrip('+')}.session"
+SESSION_PATH = f"{PHONE.lstrip('+')}.session"
 
 # Ma'lumotlar bazasiga ulanish
 try:
     engine = create_engine(
-        url="postgresql+psycopg2://akbarov:akbarov@localhost:5433/logist_smart",
+        url="postgresql+psycopg2://skylog:skylog@localhost:5432/logist_smart",
         echo=True,
         pool_size=180,
         max_overflow=250
@@ -97,7 +97,7 @@ async def get_telegram_groups(phone: str):
                     logger.info(f"Guruh topildi: {dialog.name}")
                     group_data = {
                         "name": dialog.name,
-                        "folder": "Skylog-7",
+                        "folder": "Skylog-8",
                         "link": f"https://t.me/{dialog.entity.username}" if dialog.entity.username else "Link yo'q",
                         "is_active": True,
                         "is_deleted": False,
@@ -157,7 +157,7 @@ async def add_group_command(message: types.Message):
         # Guruhlarni ma'lumotlar bazasiga qo'shish
         add_groups_to_db(groups)
         logger.info(f"Guruhlar ma'lumotlar bazasiga qo'shildi, chat_id: {chat_id}")
-        await message.reply("Guruhlar muvaffaqiyatli 'Skylog-7' folderiga qo'shildi!")
+        await message.reply("Guruhlar muvaffaqiyatli 'Skylog-8' folderiga qo'shildi!")
 
     except Exception as e:
         logger.error(f"Xatolik yuz berdi: {str(e)}, chat_id: {chat_id}")
