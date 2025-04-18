@@ -262,7 +262,7 @@ async def select_folder(msg: Message) -> None:
 
 @dp.message_handler(filters.CheckState("SELECT_FOLDER"),
                     lambda msg: msg.text in ["Skylog-1", "Skylog-2", "Skylog-3", "Skylog-4", "Skylog-5", "Skylog-6",
-                                             "Skylog-7"])
+                                             "Skylog-7","Skylog-8"])
 async def select_fol(msg: Message) -> None:
     data = state.get_data(msg.chat.id)
     data.update({"PAGE": 0})
