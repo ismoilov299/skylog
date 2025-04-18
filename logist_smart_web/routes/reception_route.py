@@ -1,17 +1,17 @@
-from app import root, db
+from app import app, db
 from models.models import User
 from forms.user_form import ReceptionForm
 from flask_login import login_required, current_user
 from flask import render_template, redirect, request, url_for
 
-@root.route("/receptions", methods=["GET"])
-@root.route("/reception/list", methods=["GET"])
+@app.route("/receptions", methods=["GET"])
+@app.route("/reception/list", methods=["GET"])
 @login_required
 def reception_page() -> render_template:
     receptions = User.query.filter_by(role = "RECEPTION", is_deleted = False).all()
     return render_template("reception/list.html", session=current_user, reception_list=receptions)
 
-@root.route("/reception/create", methods=["GET","POST"])
+@app.route("/reception/create", methods=["GET","POST"])
 @login_required
 def reception_create_page() -> render_template:
     form = ReceptionForm()
@@ -30,7 +30,7 @@ def reception_create_page() -> render_template:
         return redirect(url_for('reception_page'))
     return render_template("reception/create.html", form=form)
 
-@root.route("/reception/delete/<id>", methods=["GET","POST"])
+@app.route("/reception/delete/<id>", methods=["GET","POST"])
 @login_required
 def reception_delete_page(id) -> render_template:
     user = User.query.filter_by(id=id, is_deleted=False, role = "RECEPTION").first()
