@@ -8,7 +8,7 @@ from models.models import db, login_manager
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = "static"
 app.config["SECRET_KEY"] = "942acc9ac21231fa1872f963"
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://akbarov:akbarov@localhost/logist_smart"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://skylog:skylog@localhost:5432/logist_smart"
 
 #"postgresql+psycopg2://akbarov:akbarov@localhost/logist_smart"
 db.init_app(app)
