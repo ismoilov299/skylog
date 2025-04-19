@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import sqlalchemy
 from configs.database_config import Base, engine
 
@@ -36,7 +38,7 @@ class User(Base):
                 return "NOT_ACTIVE"
         else:
             return "NO"
-        
+
     @staticmethod
     def register(first_name: str, last_name: str, phone: str, password: str, lang: str, chat_id: int) -> bool:
         user = User.metadata.tables.get("user")
@@ -44,7 +46,20 @@ class User(Base):
         conn = engine.connect()
         sel_res = conn.execute(sel)
         if sel_res.fetchone() is None:
-            ins = user.insert().values(first_name = first_name, last_name = last_name, phone = phone, password = password, is_deleted = False, lang = lang, role = "STUDENT", chat_id = chat_id, created_by = None, is_active = False)
+            # Добавляем текущую дату при регистрации
+            ins = user.insert().values(
+                first_name=first_name,
+                last_name=last_name,
+                phone=phone,
+                password=password,
+                is_deleted=False,
+                lang=lang,
+                role="STUDENT",
+                chat_id=chat_id,
+                created_by=None,
+                is_active=False,
+                created_at=datetime.now()  # Добавляем текущую дату
+            )
             conn.execute(ins)
             conn.commit()
             return True
