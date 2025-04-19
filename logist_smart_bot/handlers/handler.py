@@ -846,13 +846,16 @@ async def join_group_menu_student(msg: Message) -> None:
     text5 = language.Language.get(lang, "SUBSCRIBE") + "\n\n" + "https://t.me/addlist/3CoyHeRvosBhNDAy"
     text6 = language.Language.get(lang, "SUBSCRIBE") + "\n\n" + "https://t.me/addlist/_99iSOEIXvFiNDcy"
     text7 = language.Language.get(lang, "SUBSCRIBE") + "\n\n" + "https://t.me/addlist/MwmUGfiNNqc3Zjli"
+    text8 = language.Language.get(lang, "SUBSCRIBE") + "\n\n" + "https://t.me/addlist/G3d0ntdXmU5iNzMy"
+
     await bot.send_message(msg.chat.id, text1, reply_markup=keyboard.remove_menu)
     await bot.send_message(msg.chat.id, text2, reply_markup=keyboard.remove_menu)
     await bot.send_message(msg.chat.id, text3, reply_markup=keyboard.remove_menu)
     await bot.send_message(msg.chat.id, text4, reply_markup=keyboard.remove_menu)
     await bot.send_message(msg.chat.id, text5, reply_markup=keyboard.remove_menu)
     await bot.send_message(msg.chat.id, text6, reply_markup=keyboard.remove_menu)
-    await bot.send_message(msg.chat.id, text7, reply_markup=keyboard.get_done_student_menu(lang))
+    await bot.send_message(msg.chat.id, text7, reply_markup=keyboard.remove_menu)
+    await bot.send_message(msg.chat.id, text8, reply_markup=keyboard.get_done_student_menu(lang))
 
 
 @dp.message_handler(filters.CheckState("ACTIVATE_MENU"), filters.CheckWord("ACTIVATE"))
