@@ -30,7 +30,7 @@ API_HASH = '1bab3b9c3675227b43619d2175bd6990'
 PHONE = '+998906830271'
 
 # Sessiya fayli yo‘li
-SESSION_PATH = f"{PHONE.lstrip('+')}.session"
+SESSION_PATH = f"/var/www/skylog/logist_smart_bot/{PHONE.lstrip('+')}.session"
 
 # Ma'lumotlar bazasiga ulanish
 try:
