@@ -135,11 +135,12 @@ def get_folder(lang: str) -> ReplyKeyboardMarkup:
     skylog_5 = KeyboardButton("Skylog-5")
     skylog_6 = KeyboardButton("Skylog-6")
     skylog_7 = KeyboardButton("Skylog-7")
+    skylog_8 = KeyboardButton("Skylog-8")
     back_to_home_menu = KeyboardButton(language.Language.get(lang, "BACK_TO_HOME_MENU"))
     folder_menu.add(skylog_1, skylog_2)
     folder_menu.add(skylog_3, skylog_4)
     folder_menu.add(skylog_5, skylog_6)
-    folder_menu.add(skylog_7)
+    folder_menu.add(skylog_7,skylog_8)
     folder_menu.add(back_to_home_menu)
     
     return folder_menu
